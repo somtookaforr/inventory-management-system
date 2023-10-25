@@ -47,17 +47,17 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customerID`, `fullName`, `email`, `mobile`, `phone2`, `address`, `address2`, `city`, `district`, `status`, `createdOn`) VALUES
-(4, 'Bill Gates', 'bill@microsoft.com', 993737, 772484884, '45, Palo Alto House, Marine Drive', 'South Carolina', 'Microsoft', 'Kurunegala', 'Active', '2018-04-30 15:14:02'),
-(14, 'Steve Jobs', 'sjobs@apple.com', 333829832, 0, '1st Floor, Apple House, ', 'Las Vegas Street', 'Las Vegas', 'Monaragala', 'Disabled', '2018-05-01 12:03:10'),
-(18, 'Asitha Silva', 'asitha@gmail.com', 777987654, 0, 'No. 3, Radcliff Avenue, School Lane', 'Kalutara South', 'Kalutara', 'Kalutara', 'Active', '2018-05-02 09:52:28'),
+(4, 'Bill Gates', 'bill@microsoft.com', 99373654, 772484884, '45, Palo Alto House, Marine Drive', 'South Carolina', 'Microsoft', 'Kurunegala', 'Active', '2018-04-30 15:14:02'),
+(14, 'Steve Jobs', 'sjobs@apple.com', 333829832, 923344584, '1st Floor, Apple House, ', 'Las Vegas Street', 'Las Vegas', 'Monaragala', 'Disabled', '2018-05-01 12:03:10'),
+(18, 'Asitha Silva', 'asitha@gmail.com', 777987654, 903874758, 'No. 3, Radcliff Avenue, School Lane', 'Kalutara South', 'Kalutara', 'Kalutara', 'Active', '2018-05-02 09:52:28'),
 (24, 'Sunil Perera', 'Sunil@gypsies.sound', 338393932, 413837293, '67/7, Perera Villa, Jayasekara Avenue', 'Mount Lavinia', 'Ratmalana', 'Colombo', 'Active', '2018-05-02 10:48:37'),
 (25, 'Theresa May', 'may34@uk.gov.com', 329393903, 777833737, '12, Downing Street', 'London', 'London', 'Matale', 'Active', '2018-05-03 02:28:07'),
 (26, 'Sachin Tendulkar', 'sachintendulkar@icc.com', 444958303, 84792838, '789-4, Apartment 3, ', 'Cric Complex', 'New Delhi', 'Puttalam', 'Active', '2018-05-03 02:28:38'),
-(38, 'Nuwan Perara', 'nuwan@yahoo.com', 839378202, 0, 'Nuwan Villa, Lower Street,', 'North Mulativu', 'Mullaitivu', 'Mullaitivu', 'Active', '2018-05-05 11:17:49'),
-(39, 'Amal Silverton', 'amals452@yahoo.com', 232345676, 0, 'Amal\'s House, Amal\'s Street,', 'Amal Road', 'Ambalangoda', 'Galle', 'Active', '2018-05-05 13:27:06'),
-(40, 'Andrew Symonds', 'symonds@cricket.au.com', 123, 0, '23, Oak View Avenue', 'Western Australia', 'Melbourne', 'Colombo', 'Disabled', '2018-05-13 01:20:23'),
-(41, 'Mark Taylor', '', 111, 0, '111', '', '', 'Colombo', 'Active', '2018-05-13 01:24:54'),
-(42, 'Nelson Mandela', 'sjobs@apple.com', 333829832, 0, '1st Floor, Apple House, ', 'Las Vegas Street', 'Las Vegas', 'Kalutara', 'Disabled', '2018-05-13 02:39:41');
+(38, 'Nuwan Perara', 'nuwan@yahoo.com', 839378202, 289345768, 'Nuwan Villa, Lower Street,', 'North Mulativu', 'Mullaitivu', 'Mullaitivu', 'Active', '2018-05-05 11:17:49'),
+(39, 'Amal Silverton', 'amals452@yahoo.com', 232345676, 892843945, 'Amal\'s House, Amal\'s Street,', 'Amal Road', 'Ambalangoda', 'Galle', 'Active', '2018-05-05 13:27:06'),
+(40, 'Andrew Symonds', 'symonds@cricket.au.com', 123432231, 839405876, '23, Oak View Avenue', 'Western Australia', 'Melbourne', 'Colombo', 'Disabled', '2018-05-13 01:20:23'),
+(41, 'Mark Taylor', 'marktaylor@gmail.com', 111231723, 928475632, '111', 'US', 'New Jersey', 'Trenton', 'Active', '2018-05-13 01:24:54'),
+(42, 'Nelson Mandela', 'sjobs@apple.com', 333829832, 213890467, '1st Floor, Apple House, ', 'Las Vegas Street', 'Las Vegas', 'Kalutara', 'Disabled', '2018-05-13 02:39:41');
 
 -- --------------------------------------------------------
 
@@ -83,15 +83,15 @@ CREATE TABLE `item` (
 
 INSERT INTO `item` (`productID`, `itemNumber`, `itemName`, `discount`, `stock`, `unitPrice`, `imageURL`, `status`, `description`) VALUES
 (34, '1', 'First Bag', 0, 28, 1500, '1525670999_1.png', 'Active', ''),
-(35, '2', 'School Bag', 0, 5, 500, '1525681111_661539.png', 'Active', ''),
-(36, '3', 'Office Bag', 0, 5, 1300, '1525709924_office bag.jpg', 'Active', ''),
-(37, '4', 'Leather Bag', 2, 6, 3409, '1525710010_leather bag.jpg', 'Active', ''),
-(38, '5', 'Travel Bag', 2, 17, 1200, '1525706032_travel bag.jpg', 'Active', ''),
-(39, '6', 'Gym Bag', 0, 0, 3000, '1525710463_gym bag.jpg', 'Active', ''),
-(40, '7', 'Handbag', 1.5, 10, 1650, '1525713267_handbag.jpg', 'Active', ''),
-(41, '8', 'Laptop Bag', 2.1, 9, 2300, '1525750683_661539.png', 'Active', ''),
-(43, '10', 'Sports Bag', 1, 92, 1000, '1525756289_sports bag.jpg', 'Active', ''),
-(45, '11', 'First Aid Bag', 1.5, 11, 1200, '1525787551_first aid bag.jpg', 'Active', ''),
+(35, '2', 'School Bag', 0, 5, 500, '1525681111_661539.png', 'Active', 'A stylish and durable school bag designed to carry books, notebooks, and school essentials with ease, making it the perfect companion for students of all ages.'),
+(36, '3', 'Office Bag', 0, 5, 1300, '1525709924_office bag.jpg', 'Active', 'A sleek and professional office bag, thoughtfully crafted to hold laptops, documents, and daily work essentials, ensuring you stay organized and look sharp in the workplace.'),
+(37, '4', 'Leather Bag', 2, 6, 3409, '1525710010_leather bag.jpg', 'Active', 'A luxurious accessory blending elegance and function.'),
+(38, '5', 'Travel Bag', 2, 17, 1200, '1525706032_travel bag.jpg', 'Active', 'A spacious and versatile travel companion, designed to accommodate your clothing, accessories, and travel gear, making your journeys hassle-free and stylish.'),
+(39, '6', 'Gym Bag', 0, 0, 3000, '1525710463_gym bag.jpg', 'Active', 'A sporty bag for your workout gear.'),
+(40, '7', 'Handbag', 1.5, 10, 1650, '1525713267_handbag.jpg', 'Active', "A chic and trendy handbag, perfect for everyday use, offering a mix of style and convenience, whether you're running errands or heading out for a night on the town."),
+(41, '8', 'Laptop Bag', 2.1, 9, 2300, '1525750683_661539.png', 'Active', 'A functional and protective laptop bag designed to safeguard your computer while providing ample space for accessories, ensuring your work and tech gadgets are secure on the go.'),
+(43, '10', 'Sports Bag', 1, 92, 1000, '1525756289_sports bag.jpg', 'Active', 'A durable bag for sports equipment and gear.'),
+(45, '11', 'First Aid Bag', 1.5, 11, 1200, '1525787551_first aid bag.jpg', 'Active', 'This is a Sports bag. Very useful when partaking in sporting activities.'),
 (49, '14', 'Hiking Bag', 1.5, 6, 1200, '1526297640_hiking bag.jpg', 'Active', 'This is a hiking bag. Ideal for long distance hikes. Light-weight and water proof.');
 
 -- --------------------------------------------------------

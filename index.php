@@ -20,18 +20,94 @@
 		<div class="col-lg-2">
 		<h1 class="my-4"></h1>
 			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-			  <a class="nav-link active" id="v-pills-item-tab" data-toggle="pill" href="#v-pills-item" role="tab" aria-controls="v-pills-item" aria-selected="true">Item</a>
-			  <a class="nav-link" id="v-pills-purchase-tab" data-toggle="pill" href="#v-pills-purchase" role="tab" aria-controls="v-pills-purchase" aria-selected="false">Purchase</a>
-			  <a class="nav-link" id="v-pills-vendor-tab" data-toggle="pill" href="#v-pills-vendor" role="tab" aria-controls="v-pills-vendor" aria-selected="false">Vendor</a>
-			  <a class="nav-link" id="v-pills-sale-tab" data-toggle="pill" href="#v-pills-sale" role="tab" aria-controls="v-pills-sale" aria-selected="false">Sale</a>
-			  <a class="nav-link" id="v-pills-customer-tab" data-toggle="pill" href="#v-pills-customer" role="tab" aria-controls="v-pills-customer" aria-selected="false">Customer</a>
-			  <a class="nav-link" id="v-pills-search-tab" data-toggle="pill" href="#v-pills-search" role="tab" aria-controls="v-pills-search" aria-selected="false">Search</a>
-			  <a class="nav-link" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false">Reports</a>
+				<a class="nav-link active" id="v-pills-index-tab" data-toggle="pill" href="#v-pills-index" role="tab" aria-controls="v-pills-index" aria-selected="true">Index</a>
+			  	<a class="nav-link" id="v-pills-item-tab" data-toggle="pill" href="#v-pills-item" role="tab" aria-controls="v-pills-item" aria-selected="false">Item</a>
+			  	<a class="nav-link" id="v-pills-purchase-tab" data-toggle="pill" href="#v-pills-purchase" role="tab" aria-controls="v-pills-purchase" aria-selected="false">Purchase</a>
+			  	<a class="nav-link" id="v-pills-vendor-tab" data-toggle="pill" href="#v-pills-vendor" role="tab" aria-controls="v-pills-vendor" aria-selected="false">Vendor</a>
+			  	<a class="nav-link" id="v-pills-sale-tab" data-toggle="pill" href="#v-pills-sale" role="tab" aria-controls="v-pills-sale" aria-selected="false">Sale</a>
+			  	<a class="nav-link" id="v-pills-customer-tab" data-toggle="pill" href="#v-pills-customer" role="tab" aria-controls="v-pills-customer" aria-selected="false">Customer</a>
+			  	<a class="nav-link" id="v-pills-search-tab" data-toggle="pill" href="#v-pills-search" role="tab" aria-controls="v-pills-search" aria-selected="false">Search</a>
+			  	<a class="nav-link" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false">Reports</a>
 			</div>
 		</div>
 		 <div class="col-lg-10">
 			<div class="tab-content" id="v-pills-tabContent">
-			  <div class="tab-pane fade show active" id="v-pills-item" role="tabpanel" aria-labelledby="v-pills-item-tab">
+			<div class="tab-pane fade show active" id="v-pills-index" role="tabpanel" aria-labelledby="v-pills-index-tab">
+				<div class="card card-outline-secondary my-4">
+				  <div class="card-header">Index Details</div>
+				  <div class="card-body">
+					<div class="row">
+						<div class="col availableItems">
+							<?php
+							$available_dataPoints = array();
+							//Best practice is to create a separate file for handling connection to database
+							try{
+								// Creating a new connection.
+								// Replace your-hostname, your-db, your-username, your-password according to your database
+								$link = new \PDO(   'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+													'root', //'root',
+													'', //'',
+													array(
+														\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+														\PDO::ATTR_PERSISTENT => false
+													)
+												);
+								
+								$handle = $link->prepare('select stock, itemName from item'); 
+								$handle->execute(); 
+								$result = $handle->fetchAll(\PDO::FETCH_OBJ);
+									
+								foreach($result as $row){
+									array_push($available_dataPoints, array("y"=> $row->stock, "label"=> $row->itemName));
+								}
+
+								$link = null;
+							}
+							catch(\PDOException $ex){
+								print($ex->getMessage());
+							}
+								
+							?>
+							<div id="availableItem" style="height: 300px; width: 100%;"></div>													
+						</div>
+
+						<div class="col purchasedItems">
+							<?php					
+							$purchase_dataPoints = array();
+							//Best practice is to create a separate file for handling connection to database
+							try{
+								// Creating a new connection.
+								// Replace your-hostname, your-db, your-username, your-password according to your database
+								$link = new \PDO(   'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+													'root', //'root',
+													'', //'',
+													array(
+														\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+														\PDO::ATTR_PERSISTENT => false
+													)
+												);
+								
+								$handle = $link->prepare('select quantity, itemName from purchase'); 
+								$handle->execute(); 
+								$result = $handle->fetchAll(\PDO::FETCH_OBJ);
+									
+								foreach($result as $row){
+									array_push($purchase_dataPoints, array("y"=> $row->quantity, "label"=> $row->itemName));
+								}
+
+								$link = null;
+							}
+							catch(\PDOException $ex){
+								print($ex->getMessage());
+							}	
+							?>
+							<div id="purchasedItem" style="height: 300px; width: 100%;"></div>													
+						</div>
+					</div>
+				  </div> 
+				</div>
+			</div>
+			  <div class="tab-pane fade" id="v-pills-item" role="tabpanel" aria-labelledby="v-pills-item-tab">
 				<div class="card card-outline-secondary my-4">
 				  <div class="card-header">Item Details</div>
 				  <div class="card-body">
@@ -561,5 +637,40 @@
 <?php
 	require 'inc/footer.php';
 ?>
+	<script>
+		window.onload = function () {
+		
+			var purchaseChart = new CanvasJS.Chart("purchasedItem", {
+				animationEnabled: true,
+				exportEnabled: true,
+				theme: "light1", // "light1", "light2", "dark1", "dark2"
+				title:{
+					text: "Column Chart of Purchased Items"
+				},
+				data: [{
+					type: "column", //change type to bar, line, area, pie, etc  
+					dataPoints: <?php echo json_encode($purchase_dataPoints, JSON_NUMERIC_CHECK); ?>
+				}]
+			});
+			purchaseChart.render();
+
+			
+			var availableChart = new CanvasJS.Chart("availableItem", {
+				animationEnabled: true,
+				exportEnabled: true,
+				theme: "light1", // "light1", "light2", "dark1", "dark2"
+				title:{
+					text: "Column Chart of Available Items"
+				},
+				data: [{
+					type: "column", //change type to bar, line, area, pie, etc  
+					dataPoints: <?php echo json_encode($available_dataPoints, JSON_NUMERIC_CHECK); ?>
+				}]
+			});
+			availableChart.render();
+				
+		}
+	</script>
+	<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
   </body>
 </html>

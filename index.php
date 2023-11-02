@@ -35,8 +35,8 @@
 			<div class="tab-pane fade show active" id="v-pills-index" role="tabpanel" aria-labelledby="v-pills-index-tab">
 				<div class="card card-outline-secondary my-4">
 				  <div class="card-header">Index Details</div>
-				  <div class="card-body">
-					<div class="row">
+					<div class="card-body">
+						<div class="row">
 						<div class="col availableItems">
 							<?php
 							$available_dataPoints = array();
@@ -103,8 +103,149 @@
 							?>
 							<div id="purchasedItem" style="height: 300px; width: 100%;"></div>													
 						</div>
+
+						
+
+						<div class="col purchaseData">
+							<?php
+							// Establish a database connection
+							try {
+   								$pdo = new \PDO(
+        						'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4',
+        						'root',
+        						'',
+        						array(
+					            \PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            					\PDO::ATTR_PERSISTENT => false
+        						)
+    							);
+
+
+
+								// Query the database to count occurrences and calculate the total 'Price'
+								$sql = "SELECT `itemName`, SUM(`unitPrice` * `quantity`) as total_price
+								FROM purchase
+								GROUP BY `itemName`;
+								";
+								$stmt = $pdo->query($sql);
+
+								$resultArray = array();
+
+								if ($stmt) {
+									while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+										$item = $row['itemName'];
+										$totalPrice = $row['total_price'];
+								
+										// Create an object with 'label' and 'y' properties
+										$itemData = array(
+											"label" => $item,
+											"y" => $totalPrice
+										);
+								
+										// Add the object to the result array
+										$resultArray[] = $itemData;
+									}
+								}
+							} catch (\PDOException $e) {
+    							// Handle database connection errors here
+   								echo "Database connection failed: " . $e->getMessage();
+    							exit();
+							}
+
+							?>
+							<div id="purchaseData" style="height: 300px; width: 100%;"></div>	
+						</div>
+						</div>
+						<div class="row">
+						<div class="col vendorStatus">
+						<?php					
+							$vendor_dataPoints = array();
+							//Best practice is to create a separate file for handling connection to database
+							try{
+								// Creating a new connection.
+								// Replace your-hostname, your-db, your-username, your-password according to your database
+								$link = new \PDO(   'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+													'root', //'root',
+													'', //'',
+													array(
+														\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+														\PDO::ATTR_PERSISTENT => false
+													)
+												);
+								
+								
+								$handle = $link->prepare('select * from vendor where Status = "Active" ');
+								$handle->execute();
+								
+									
+								$act = $handle->rowCount();
+
+
+								$handle = $link->prepare('select * from vendor where Status = "Disabled" ');
+								$handle->execute();
+
+								$dis = $handle->rowCount();;
+
+								$vendor_dataPoints = [
+									["y" => intval($act / ($act + $dis) * 100), "label" => "Active"],
+									["y" => intval($dis / ($act + $dis) * 100), "label" => "Disabled"]
+								];
+
+								$link = null;
+							}
+							catch(\PDOException $ex){
+								print($ex->getMessage());
+							}	
+							?>
+							<div id="vendorStatus" style="height: 300px; width: 100%;"></div>	
+						</div>
+						</div>
+						
+						<div class="col customerStatus">
+							<?php					
+							$customer_dataPoints = array();
+							//Best practice is to create a separate file for handling connection to database
+							try{
+								// Creating a new connection.
+								// Replace your-hostname, your-db, your-username, your-password according to your database
+								$link = new \PDO(   'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+													'root', //'root',
+													'', //'',
+													array(
+														\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+														\PDO::ATTR_PERSISTENT => false
+													)
+												);
+								
+								
+								$handle = $link->prepare('select * from customer where Status = "Active" ');
+								$handle->execute();
+								
+									
+								$act = $handle->rowCount();
+
+
+								$handle = $link->prepare('select * from customer where Status = "Disabled" ');
+								$handle->execute();
+
+								$dis = $handle->rowCount();;
+
+								$customer_dataPoints = [
+									["y" => intval($act / ($act + $dis) * 100), "label" => "Active"],
+									["y" => intval($dis / ($act + $dis) * 100), "label" => "Disabled"]
+								];
+
+								$link = null;
+							}
+							catch(\PDOException $ex){
+								print($ex->getMessage());
+							}	
+							?>
+							<div id="customerStatus" style="height: 300px; width: 100%;"></div>	
+						</div>
+					
+						</div>
 					</div>
-				  </div> 
 				</div>
 			</div>
 			  <div class="tab-pane fade" id="v-pills-item" role="tabpanel" aria-labelledby="v-pills-item-tab">
@@ -668,8 +809,62 @@
 				}]
 			});
 			availableChart.render();
+
+			var customerChart = new CanvasJS.Chart("customerStatus", {
+				theme: "light2", // "light1", "light2", "dark1", "dark2"
+				exportEnabled: true,
+				animationEnabled: true,
+				title: {
+					text: "Active vs Disabled Customers"
+				},
+				data: [{
+					type: "pie",
+					startAngle: 25,
+					toolTipContent: "<b>{label}</b>: {y}%",
+					showInLegend: "true",
+					legendText: "{label}",
+					indexLabelFontSize: 16,
+					indexLabel: "{label} - {y}%",
+					dataPoints: <?php echo json_encode($customer_dataPoints, JSON_NUMERIC_CHECK); ?>
+					}]
+				});
+				customerChart.render();
+
+			var vendorChart = new CanvasJS.Chart("vendorStatus", {
+				theme: "light2", // "light1", "light2", "dark1", "dark2"
+				exportEnabled: true,
+				animationEnabled: true,
+				title: {
+					text: "Active vs Disabled Vendors"
+				},
+				data: [{
+					type: "pie",
+					startAngle: 25,
+					toolTipContent: "<b>{label}</b>: {y}%",
+					showInLegend: "true",
+					legendText: "{label}",
+					indexLabelFontSize: 16,
+					indexLabel: "{label} - {y}%",
+					dataPoints: <?php echo json_encode($vendor_dataPoints, JSON_NUMERIC_CHECK); ?>
+					}]
+				});
+				vendorChart.render();
+
+				var purchaseChart = new CanvasJS.Chart("purchaseData", {
+				theme: "light2", // "light1", "light2", "dark1", "dark2"
+				exportEnabled: true,
+				animationEnabled: true,
+				title: {
+					text: "Product Sales"
+				},
+				data: [{
+					type: "line", //change type to bar, line, area, pie, etc  
+					dataPoints: <?php echo json_encode($resultArray, JSON_NUMERIC_CHECK); ?>
+				}]
+				});
+				purchaseChart.render();
 				
-		}
+			}
 	</script>
 	<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
   </body>

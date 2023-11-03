@@ -199,7 +199,6 @@
 							?>
 							<div id="vendorStatus" style="height: 300px; width: 100%;"></div>	
 						</div>
-						</div>
 						
 						<div class="col customerStatus">
 							<?php					

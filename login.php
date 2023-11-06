@@ -98,18 +98,11 @@ require_once('inc/header.html');
 										<label for="resetPasswordPassword2">Confirm New Password</label>
 										<input type="password" class="form-control" id="resetPasswordPassword2" name="resetPasswordPassword2" placeholder="Confirm password">
 									</div>
-									<!-- <a href="login.php" class="btn btn-primary">Login</a>
-									<a href="login.php?action=register" class="btn btn-success">Register</a> -->
-									<button type="button" id="resetPasswordButton" class="btn btn-primary btn-block">Reset</button>
-									<br>
-									<div class="d-flex justify-content-between">
-										<div class="p-2">
-											<a href="login.php" class="btn btn-success">Back</a>
-										</div>
-										<div class="p-2">
-											<button type="reset" class="btn btn-danger">Clear</button>
-										</div>
+									<!-- Login button -->
+									<div class="text-left">
+										<p><a href="login.php">Back to Login</a></p>
 									</div>
+									<button type="button" id="resetPasswordButton" class="btn btn-primary btn-block">Reset</button>
 								</form>
 							</div>
 						</div>

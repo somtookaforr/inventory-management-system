@@ -17,9 +17,9 @@
     <!-- Page Content -->
     <div class="container-fluid">
 	  <div class="row">
-		<div class="col-lg-2">
+		<div class="col-lg-2 text-white bg-info">
 		<h1 class="my-4"></h1>
-			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+			<div class="nav flex-column nav-pills bs-secondary-color" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 				<a class="nav-link active" id="v-pills-index-tab" data-toggle="pill" href="#v-pills-index" role="tab" aria-controls="v-pills-index" aria-selected="true">Index</a>
 			  	<a class="nav-link" id="v-pills-item-tab" data-toggle="pill" href="#v-pills-item" role="tab" aria-controls="v-pills-item" aria-selected="false">Item</a>
 			  	<a class="nav-link" id="v-pills-purchase-tab" data-toggle="pill" href="#v-pills-purchase" role="tab" aria-controls="v-pills-purchase" aria-selected="false">Purchase</a>
@@ -268,12 +268,12 @@
 							<div id="itemDetailsMessage"></div>
 							<form>
 							  <div class="form-row">
-								<div class="form-group col-md-3" style="display:inline-block">
+								<div class="form-group col-md-6" style="display:inline-block">
 								  <label for="itemDetailsItemNumber">Item Number<span class="requiredIcon">*</span></label>
 								  <input type="text" class="form-control" name="itemDetailsItemNumber" id="itemDetailsItemNumber" autocomplete="off">
 								  <div id="itemDetailsItemNumberSuggestionsDiv" class="customListDivWidth"></div>
 								</div>
-								<div class="form-group col-md-3">
+								<div class="form-group col-md-6">
 								  <label for="itemDetailsProductID">Product ID</label>
 								  <input class="form-control invTooltip" type="number" readonly  id="itemDetailsProductID" name="itemDetailsProductID" title="This will be auto-generated when you add a new item">
 								</div>
@@ -284,7 +284,7 @@
 									<input type="text" class="form-control" name="itemDetailsItemName" id="itemDetailsItemName" autocomplete="off">
 									<div id="itemDetailsItemNameSuggestionsDiv" class="customListDivWidth"></div>
 								  </div>
-								  <div class="form-group col-md-2">
+								  <div class="form-group col-md-6">
 									<label for="itemDetailsStatus">Status</label>
 									<select id="itemDetailsStatus" name="itemDetailsStatus" class="form-control chosenSelect">
 										<?php include('inc/statusList.html'); ?>
@@ -292,7 +292,7 @@
 								  </div>
 							  </div>
 							  <div class="form-row">
-								<div class="form-group col-md-6" style="display:inline-block">
+								<div class="form-group col-md-12" style="display:inline-block">
 								  <!-- <label for="itemDetailsDescription">Description</label> -->
 								  <textarea rows="4" class="form-control" placeholder="Description" name="itemDetailsDescription" id="itemDetailsDescription"></textarea>
 								</div>
@@ -377,19 +377,19 @@
 							<br>							
 							<form name="imageForm" id="imageForm" method="post">
 							  <div class="form-row">
-								<div class="form-group col-md-3" style="display:inline-block">
+								<div class="form-group col-md-4" style="display:inline-block">
 								  <label for="itemImageItemNumber">Item Number<span class="requiredIcon">*</span></label>
 								  <input type="text" class="form-control" name="itemImageItemNumber" id="itemImageItemNumber" autocomplete="off">
 								  <div id="itemImageItemNumberSuggestionsDiv" class="customListDivWidth"></div>
 								</div>
-								<div class="form-group col-md-4">
+								<div class="form-group col-md-8">
 									<label for="itemImageItemName">Item Name</label>
 									<input type="text" class="form-control" name="itemImageItemName" id="itemImageItemName" readonly>
 								</div>
 							  </div>
 							  <br>
 							  <div class="form-row">
-								  <div class="form-group col-md-7">
+								  <div class="form-group col-md-12">
 									<label for="itemImageFile">Select Image ( <span class="blueText">jpg</span>, <span class="blueText">jpeg</span>, <span class="blueText">gif</span>, <span class="blueText">png</span> only )</label>
 									<input type="file" class="form-control-file btn btn-dark" id="itemImageFile" name="itemImageFile">
 								  </div>
@@ -460,16 +460,16 @@
 					<div id="purchaseDetailsMessage"></div>
 					<form>
 					  <div class="form-row">
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-4">
 						  <label for="purchaseDetailsItemNumber">Item Number<span class="requiredIcon">*</span></label>
 						  <input type="text" class="form-control" id="purchaseDetailsItemNumber" name="purchaseDetailsItemNumber" autocomplete="off">
 						  <div id="purchaseDetailsItemNumberSuggestionsDiv" class="customListDivWidth"></div>
 						</div>
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-4">
 						  <label for="purchaseDetailsPurchaseDate">Purchase Date<span class="requiredIcon">*</span></label>
 						  <input type="text" class="form-control datepicker" id="purchaseDetailsPurchaseDate" name="purchaseDetailsPurchaseDate" readonly value="2018-05-24">
 						</div>
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-4">
 						  <label for="purchaseDetailsPurchaseID">Purchase ID</label>
 						  <input type="text" class="form-control invTooltip" id="purchaseDetailsPurchaseID" name="purchaseDetailsPurchaseID" title="This will be auto-generated when you add a new record" autocomplete="off">
 						  <div id="purchaseDetailsPurchaseIDSuggestionsDiv" class="customListDivWidth"></div>
@@ -480,7 +480,7 @@
 							<label for="purchaseDetailsItemName">Item Name<span class="requiredIcon">*</span></label>
 							<input type="text" class="form-control invTooltip" id="purchaseDetailsItemName" name="purchaseDetailsItemName" readonly title="This will be auto-filled when you enter the item number above">
 						  </div>
-						  <div class="form-group col-md-2">
+						  <div class="form-group col-md-4">
 							  <label for="purchaseDetailsCurrentStock">Current Stock</label>
 							  <input type="text" class="form-control" id="purchaseDetailsCurrentStock" name="purchaseDetailsCurrentStock" readonly>
 						  </div>
@@ -503,7 +503,7 @@
 						  <input type="text" class="form-control" id="purchaseDetailsUnitPrice" name="purchaseDetailsUnitPrice" value="0">
 						  
 						</div>
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-4">
 						  <label for="purchaseDetailsTotal">Total Cost</label>
 						  <input type="text" class="form-control" id="purchaseDetailsTotal" name="purchaseDetailsTotal" readonly>
 						</div>
@@ -603,7 +603,7 @@
 						  <label for="vendorDetailsVendorFullName">Full Name<span class="requiredIcon">*</span></label>
 						  <input type="text" class="form-control" id="vendorDetailsVendorFullName" name="vendorDetailsVendorFullName" placeholder="">
 						</div>
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-3">
 							<label for="vendorDetailsStatus">Status</label>
 							<select id="vendorDetailsStatus" name="vendorDetailsStatus" class="form-control chosenSelect">
 								<?php include('inc/statusList.html'); ?>
@@ -629,20 +629,22 @@
 							<input type="email" class="form-control" id="vendorDetailsVendorEmail" name="vendorDetailsVendorEmail">
 						</div>
 					  </div>
-					  <div class="form-group">
+					  <div class="form-row">
+					  <div class="form-group col-6">
 						<label for="vendorDetailsVendorAddress">Address<span class="requiredIcon">*</span></label>
 						<input type="text" class="form-control" id="vendorDetailsVendorAddress" name="vendorDetailsVendorAddress">
 					  </div>
-					  <div class="form-group">
+					  <div class="form-group col-6">
 						<label for="vendorDetailsVendorAddress2">Address 2</label>
 						<input type="text" class="form-control" id="vendorDetailsVendorAddress2" name="vendorDetailsVendorAddress2">
+					  </div>
 					  </div>
 					  <div class="form-row">
 						<div class="form-group col-md-6">
 						  <label for="vendorDetailsVendorCity">City</label>
 						  <input type="text" class="form-control" id="vendorDetailsVendorCity" name="vendorDetailsVendorCity">
 						</div>
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-6">
 						  <label for="vendorDetailsVendorDistrict">District</label>
 						  <select id="vendorDetailsVendorDistrict" name="vendorDetailsVendorDistrict" class="form-control chosenSelect">
 							<?php include('inc/districtList.html'); ?>
@@ -714,18 +716,13 @@
 							<input type="text" class="form-control" id="saleDetailsCustomerID" name="saleDetailsCustomerID" autocomplete="off">
 							<div id="saleDetailsCustomerIDSuggestionsDiv" class="customListDivWidth"></div>
 						</div>
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-6">
 						  <label for="saleDetailsCustomerName">Customer Name</label>
 						  <input type="text" class="form-control" id="saleDetailsCustomerName" name="saleDetailsCustomerName" readonly>
 						</div>
-						<div class="form-group col-md-2">
-						  <label for="saleDetailsSaleID">Sale ID</label>
-						  <input type="text" class="form-control invTooltip" id="saleDetailsSaleID" name="saleDetailsSaleID" title="This will be auto-generated when you add a new record" autocomplete="off">
-						  <div id="saleDetailsSaleIDSuggestionsDiv" class="customListDivWidth"></div>
-						</div>
 					  </div>
 					  <div class="form-row">
-						  <div class="form-group col-md-5">
+						  <div class="form-group col-md-6">
 							<label for="saleDetailsItemName">Item Name</label>
 							<!--<select id="saleDetailsItemNames" name="saleDetailsItemNames" class="form-control chosenSelect"> -->
 								<?php 
@@ -734,29 +731,34 @@
 							<!-- </select> -->
 							<input type="text" class="form-control invTooltip" id="saleDetailsItemName" name="saleDetailsItemName" readonly title="This will be auto-filled when you enter the item number above">
 						  </div>
+						<div class="form-group col-md-3">
+							<label for="saleDetailsSaleID">Sale ID</label>
+							<input type="text" class="form-control invTooltip" id="saleDetailsSaleID" name="saleDetailsSaleID" title="This will be auto-generated when you add a new record" autocomplete="off">
+							<div id="saleDetailsSaleIDSuggestionsDiv" class="customListDivWidth"></div>
+						</div>
 						  <div class="form-group col-md-3">
 							  <label for="saleDetailsSaleDate">Sale Date<span class="requiredIcon">*</span></label>
 							  <input type="text" class="form-control datepicker" id="saleDetailsSaleDate" value="2018-05-24" name="saleDetailsSaleDate" readonly>
 						  </div>
 					  </div>
 					  <div class="form-row">
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-3">
 								  <label for="saleDetailsTotalStock">Total Stock</label>
 								  <input type="text" class="form-control" name="saleDetailsTotalStock" id="saleDetailsTotalStock" readonly>
 								</div>
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-3">
 						  <label for="saleDetailsDiscount">Discount %</label>
 						  <input type="text" class="form-control" id="saleDetailsDiscount" name="saleDetailsDiscount" value="0">
 						</div>
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-3">
 						  <label for="saleDetailsQuantity">Quantity<span class="requiredIcon">*</span></label>
 						  <input type="number" class="form-control" id="saleDetailsQuantity" name="saleDetailsQuantity" value="0">
 						</div>
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-3">
 						  <label for="saleDetailsUnitPrice">Unit Price<span class="requiredIcon">*</span></label>
 						  <input type="text" class="form-control" id="saleDetailsUnitPrice" name="saleDetailsUnitPrice" value="0">
 						</div>
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-6">
 						  <label for="saleDetailsTotal">Total</label>
 						  <input type="text" class="form-control" id="saleDetailsTotal" name="saleDetailsTotal">
 						</div>
@@ -810,7 +812,7 @@
 						  <label for="customerDetailsCustomerFullName">Full Name<span class="requiredIcon">*</span></label>
 						  <input type="text" class="form-control" id="customerDetailsCustomerFullName" name="customerDetailsCustomerFullName">
 						</div>
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-3">
 							<label for="customerDetailsStatus">Status</label>
 							<select id="customerDetailsStatus" name="customerDetailsStatus" class="form-control chosenSelect">
 								<?php include('inc/statusList.html'); ?>
@@ -836,20 +838,22 @@
 							<input type="email" class="form-control" id="customerDetailsCustomerEmail" name="customerDetailsCustomerEmail">
 						</div>
 					  </div>
-					  <div class="form-group">
+					  <div class="form-row">
+					  <div class="form-group col-md-6">
 						<label for="customerDetailsCustomerAddress">Address<span class="requiredIcon">*</span></label>
 						<input type="text" class="form-control" id="customerDetailsCustomerAddress" name="customerDetailsCustomerAddress">
 					  </div>
-					  <div class="form-group">
+					  <div class="form-group col-md-6">
 						<label for="customerDetailsCustomerAddress2">Address 2</label>
 						<input type="text" class="form-control" id="customerDetailsCustomerAddress2" name="customerDetailsCustomerAddress2">
+					  </div>
 					  </div>
 					  <div class="form-row">
 						<div class="form-group col-md-6">
 						  <label for="customerDetailsCustomerCity">City</label>
 						  <input type="text" class="form-control" id="customerDetailsCustomerCity" name="customerDetailsCustomerCity">
 						</div>
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-6">
 						  <label for="customerDetailsCustomerDistrict">District</label>
 						  <select id="customerDetailsCustomerDistrict" name="customerDetailsCustomerDistrict" class="form-control chosenSelect">
 							<?php include('inc/districtList.html'); ?>

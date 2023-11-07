@@ -322,6 +322,51 @@
 							  <button type="button" id="updateItemDetailsButton" class="btn btn-primary">Update</button>
 							  <button type="button" id="deleteItem" class="btn btn-danger">Delete</button>
 							  <button type="reset" class="btn" id="itemClear">Clear</button>
+							  <style>
+  .custom-button {
+    display: inline-block;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .custom-button-blue {
+    border: 2px solid #0074e4; 
+    background-color: #0074e4; 
+  }
+
+  .custom-button-blue:hover {
+    background-color: #fff;
+    color: #0074e4;
+    transform: scale(1.05);
+  }
+
+  .custom-button-yellow {
+    border: 2px solid #ffc107; 
+    background-color: #ffc107; 
+  }
+
+  .custom-button-yellow:hover {
+    background-color: #fff;
+    color: #ffc107;
+    transform: scale(1.05);
+  }
+
+  .custom-button-purple {
+    border: 2px solid #6f42c1; 
+    background-color: #6f42c1; 
+  }
+
+  .custom-button-purple:hover {
+    background-color: #fff;
+    color: #6f42c1;
+    transform: scale(1.05);
+  }
+</style>
 							</form>
 						</div>
 						<div id="itemImageTab" class="container-fluid tab-pane fade">
@@ -350,9 +395,58 @@
 								  </div>
 							  </div>
 							  <br>
-							  <button type="button" id="updateImageButton" class="btn btn-primary">Upload Image</button>
+							 <button  type="button" id="updateImageButton" class="btn btn-primary">Upload Image</button>
 							  <button type="button" id="deleteImageButton" class="btn btn-danger">Delete Image</button>
 							  <button type="reset" class="btn">Clear</button>
+							  <style>
+    #updateImageButton {
+      display: inline-block;
+      border: 2px solid #007bff; 
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #007bff; 
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    #updateImageButton:hover {
+      background-color: #fff;
+      color: #007bff;
+      transform: scale(1.05);
+    }
+
+    
+    #deleteImageButton {
+      display: inline-block;
+      border: 2px solid #dc3545; 
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #dc3545; 
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    #deleteImageButton:hover {
+      background-color: #fff;
+      color: #dc3545;
+      transform: scale(1.05);
+    }
+  </style>
+
+
+
+
+
+
+
 							</form>
 						</div>
 					</div>
@@ -414,9 +508,84 @@
 						  <input type="text" class="form-control" id="purchaseDetailsTotal" name="purchaseDetailsTotal" readonly>
 						</div>
 					  </div>
-					  <button type="button" id="addPurchase" class="btn btn-success">Add Purchase</button>
-					  <button type="button" id="updatePurchaseDetailsButton" class="btn btn-primary">Update</button>
-					  <button type="reset" class="btn">Clear</button>
+					  <button type="button" id="addPurchase" class="btn custom-button">Add Purchase</button>
+
+<style>
+  .custom-button {
+    display: inline-block;
+    border: 2px solid #28a745; /* Set your desired border color */
+    border-radius: 10px; /* Adjust the border-radius for curved edges */
+    overflow: hidden;
+  }
+
+  .custom-button {
+    background-color: #28a745; /* Set your desired background color */
+    color: #fff; /* Set your desired text color */
+    padding: 10px 20px;
+    border: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s; /* Added transition for text transformation */
+    cursor: pointer;
+  }
+
+  .custom-button:hover {
+    background-color: #fff; /* Set the hover background color */
+    color: #28a745; /* Set the hover text color */
+    transform: scale(1.05); /* Scale the button on hover */
+  }
+</style>
+
+<button type="button" id="updatePurchaseDetailsButton" class="btn custom-button">Update</button>
+
+<style>
+  .custom-button {
+    display: inline-block;
+    border: 2px solid #007bff; /* Set your desired border color */
+    border-radius: 10px; /* Adjust the border-radius for curved edges */
+    overflow: hidden;
+  }
+
+  .custom-button {
+    background-color: transparent; /* Set the background color to transparent */
+    color: #007bff; /* Set your desired text color */
+    padding: 10px 20px;
+    border: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s; /* Added transition for text transformation */
+    cursor: pointer;
+  }
+
+  .custom-button:hover {
+    background-color: #fff; /* Set the hover background color */
+    color: #007bff; /* Set the hover text color */
+    transform: scale(1.05); /* Scale the button on hover */
+  }
+</style>
+
+
+<button type="reset" class="btn custom-button">Clear</button>
+
+<style>
+  .custom-button {
+    display: inline-block;
+    border: 2px solid #555; /* Set your desired border color */
+    border-radius: 10px; /* Adjust the border-radius for curved edges */
+    overflow: hidden;
+  }
+
+  .custom-button {
+    background-color: #555; /* Set your desired background color */
+    color: #fff; /* Set your desired text color */
+    padding: 10px 20px;
+    border: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s; /* Added transition for text transformation */
+    cursor: pointer;
+  }
+
+  .custom-button:hover {
+    background-color: #fff; /* Set the hover background color */
+    color: #555; /* Set the hover text color */
+    transform: scale(1.05); /* Scale the button on hover */
+  }
+</style>
 					</form>
 				  </div> 
 				</div>
@@ -484,6 +653,45 @@
 					  <button type="button" id="updateVendorDetailsButton" class="btn btn-primary">Update</button>
 					  <button type="button" id="deleteVendorButton" class="btn btn-danger">Delete</button>
 					  <button type="reset" class="btn">Clear</button>
+					  <style>
+  .custom-button {
+    display: inline-block;
+    border: 2px solid #28a745; 
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #28a745; 
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .custom-button:hover {
+    background-color: #fff;
+    color: #28a745;
+    transform: scale(1.05);
+  }
+
+  .custom-button-danger {
+    display: inline-block;
+    border: 2px solid #dc3545; 
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #dc3545; 
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .custom-button-danger:hover {
+    background-color: #fff;
+    color: #dc3545;
+    transform: scale(1.05);
+  }
+</style>
 					 </form>
 				  </div> 
 				</div>
@@ -561,7 +769,32 @@
 					  <button type="button" id="addSaleButton" class="btn btn-success">Add Sale</button>
 					  <button type="button" id="updateSaleDetailsButton" class="btn btn-primary">Update</button>
 					  <button type="reset" id="saleClear" class="btn">Clear</button>
-					</form>
+					  <style>
+    .custom-button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .success-button {
+      background-color: #28a745; 
+    }
+
+    .primary-button {
+      background-color: #007BFF; 
+    }
+
+    .clear-button {
+      background-color: #6C757D; 
+    }
+  </style>
+</form>
 				  </div> 
 				</div>
 			  </div>
@@ -627,6 +860,35 @@
 					  <button type="button" id="updateCustomerDetailsButton" class="btn btn-primary">Update</button>
 					  <button type="button" id="deleteCustomerButton" class="btn btn-danger">Delete</button>
 					  <button type="reset" class="btn">Clear</button>
+					  <style>
+    .custom-button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .success-button {
+      background-color: #28a745; /* Green color for success */
+    }
+
+    .primary-button {
+      background-color: #007BFF; /* Blue color for primary actions */
+    }
+
+    .danger-button {
+      background-color: #dc3545; /* Red color for danger */
+    }
+
+    .clear-button {
+      background-color: #6C757D; /* Gray color for clearing/resetting */
+    }
+  </style>
 					 </form>
 				  </div> 
 				</div>
@@ -634,7 +896,8 @@
 			  
 			  <div class="tab-pane fade" id="v-pills-search" role="tabpanel" aria-labelledby="v-pills-search-tab">
 				<div class="card card-outline-secondary my-4">
-				  <div class="card-header">Search Inventory<button id="searchTablesRefresh" name="searchTablesRefresh" class="btn btn-warning float-right btn-sm">Refresh</button></div>
+				<div class="card-header">Search Inventory<button id="searchTablesRefresh" name="searchTablesRefresh" class="btn custom-button-warning float-right btn-sm">Refresh</button></div>
+
 				  <div class="card-body">										
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item">
@@ -689,7 +952,8 @@
 			  
 			  <div class="tab-pane fade" id="v-pills-reports" role="tabpanel" aria-labelledby="v-pills-reports-tab">
 				<div class="card card-outline-secondary my-4">
-				  <div class="card-header">Reports<button id="reportsTablesRefresh" name="reportsTablesRefresh" class="btn btn-warning float-right btn-sm">Refresh</button></div>
+				<div class="card-header">Search Inventory<button id="searchTablesRefresh" name="searchTablesRefresh" class="btn custom-button-warning float-right btn-sm">Refresh</button></div>
+
 				  <div class="card-body">										
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item">
@@ -757,6 +1021,56 @@
 							  </div>
 							  <button type="button" id="showPurchaseReport" class="btn btn-dark">Show Report</button>
 							  <button type="reset" id="purchaseFilterClear" class="btn">Clear</button>
+							  <style>
+   
+    #showPurchaseReport {
+      display: inline-block;
+      border: 2px solid #343a40; 
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #343a40; 
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    #showPurchaseReport:hover {
+      background-color: #fff;
+      color: #343a40;
+      transform: scale(1.05);
+    }
+
+  
+    #purchaseFilterClear {
+      display: inline-block;
+      border: 2px solid #6c757d; 
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #6c757d; 
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    #purchaseFilterClear:hover {
+      background-color: #fff;
+      color: #6c757d;
+      transform: scale(1.05);
+    }
+  </style>
+
+
+
+
+
+
+
 							</form>
 							<br><br>
 							<div class="table-responsive" id="purchaseReportsTableDiv"></div>

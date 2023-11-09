@@ -12,7 +12,10 @@ require_once('inc/config/db.php');
 require_once('inc/header.html');
 ?>
 
-<body>
+<body  style="background-image: url('screenshots/backgroundp.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+
+<img src="screenshots/logo.png" style="display: block; margin-left: auto; margin-right: auto; width: 33%;">
+
 
 	<?php
 	// Variable to store the action (login, register, passwordReset)

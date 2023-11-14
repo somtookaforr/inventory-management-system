@@ -20,7 +20,7 @@
 		<div class="col-lg-2 d-none d-lg-block d-xl-block d-xxl-block">
 		<h1 class="my-4"></h1>
 			<div class="nav flex-column nav-pills bs-secondary-color" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-				<a class="nav-link active" id="v-pills-index-tab" data-toggle="pill" href="#v-pills-index" role="tab" aria-controls="v-pills-index" aria-selected="true">Index</a>
+				<a class="nav-link active" id="v-pills-index-tab" data-toggle="pill" href="#v-pills-index" role="tab" aria-controls="v-pills-index" aria-selected="true">Dashboard</a>
 			  	<a class="nav-link" id="v-pills-item-tab" data-toggle="pill" href="#v-pills-item" role="tab" aria-controls="v-pills-item" aria-selected="false">Item</a>
 			  	<a class="nav-link" id="v-pills-purchase-tab" data-toggle="pill" href="#v-pills-purchase" role="tab" aria-controls="v-pills-purchase" aria-selected="false">Purchase</a>
 			  	<a class="nav-link" id="v-pills-vendor-tab" data-toggle="pill" href="#v-pills-vendor" role="tab" aria-controls="v-pills-vendor" aria-selected="false">Vendor</a>
@@ -34,91 +34,168 @@
 			<div class="tab-content" id="v-pills-tabContent">
 			<div class="tab-pane fade show active" id="v-pills-index" role="tabpanel" aria-labelledby="v-pills-index-tab">
 				<div class="card card-outline-secondary my-4">
-				  <div class="card-header">Index Details</div>
-					<div class="card-body">
-						<div class="row">
-						<div class="col availableItems">
-							<?php
-							$available_dataPoints = array();
-							//Best practice is to create a separate file for handling connection to database
-							try{
-								// Creating a new connection.
-								// Replace your-hostname, your-db, your-username, your-password according to your database
-								$link = new \PDO(   'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
-													'root', //'root',
-													'', //'',
-													array(
-														\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-														\PDO::ATTR_PERSISTENT => false
-													)
-												);
-								
-								$handle = $link->prepare('select stock, itemName from item'); 
-								$handle->execute(); 
-								$result = $handle->fetchAll(\PDO::FETCH_OBJ);
+				  <div class="card-header">Dashboard</div>
+					<div class="card-body bg-secondary px-lg-5">
+						<div class="row gx-5 mb-5">
+							<div class="col-md-8 availableItems rounded">
+								<?php
+								$available_dataPoints = array();
+								//Best practice is to create a separate file for handling connection to database
+								try{
+									// Creating a new connection.
+									// Replace your-hostname, your-db, your-username, your-password according to your database
+									$link = new \PDO(   'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+														'root', //'root',
+														'', //'',
+														array(
+															\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+															\PDO::ATTR_PERSISTENT => false
+														)
+													);
 									
-								foreach($result as $row){
-									array_push($available_dataPoints, array("y"=> $row->stock, "label"=> $row->itemName));
+									$handle = $link->prepare('select stock, itemName from item'); 
+									$handle->execute(); 
+									$result = $handle->fetchAll(\PDO::FETCH_OBJ);
+										
+									foreach($result as $row){
+										array_push($available_dataPoints, array("y"=> $row->stock, "label"=> $row->itemName));
+									}
+
+									$link = null;
 								}
-
-								$link = null;
-							}
-							catch(\PDOException $ex){
-								print($ex->getMessage());
-							}
-								
-							?>
-							<div id="availableItem" style="height: 300px; width: 100%;"></div>													
-						</div>
-
-						<div class="col purchasedItems">
-							<?php					
-							$purchase_dataPoints = array();
-							//Best practice is to create a separate file for handling connection to database
-							try{
-								// Creating a new connection.
-								// Replace your-hostname, your-db, your-username, your-password according to your database
-								$link = new \PDO(   'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
-													'root', //'root',
-													'', //'',
-													array(
-														\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-														\PDO::ATTR_PERSISTENT => false
-													)
-												);
-								
-								$handle = $link->prepare('select quantity, itemName from purchase'); 
-								$handle->execute(); 
-								$result = $handle->fetchAll(\PDO::FETCH_OBJ);
+								catch(\PDOException $ex){
+									print($ex->getMessage());
+								}
 									
-								foreach($result as $row){
-									array_push($purchase_dataPoints, array("y"=> $row->quantity, "label"=> $row->itemName));
+								?>
+								<div id="availableItem" style="height: 300px; width: 100%;"></div>													
+							</div>
+
+							<div class="col-md-4 customerStatus rounded">
+								<?php					
+								$customer_dataPoints = array();
+								//Best practice is to create a separate file for handling connection to database
+								try{
+									// Creating a new connection.
+									// Replace your-hostname, your-db, your-username, your-password according to your database
+									$link = new \PDO(   'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+														'root', //'root',
+														'', //'',
+														array(
+															\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+															\PDO::ATTR_PERSISTENT => false
+														)
+													);
+									
+									
+									$handle = $link->prepare('select * from customer where Status = "Active" ');
+									$handle->execute();
+									
+										
+									$act = $handle->rowCount();
+
+
+									$handle = $link->prepare('select * from customer where Status = "Disabled" ');
+									$handle->execute();
+
+									$dis = $handle->rowCount();;
+
+									$customer_dataPoints = [
+										["y" => intval($act / ($act + $dis) * 100), "label" => "Active"],
+										["y" => intval($dis / ($act + $dis) * 100), "label" => "Disabled"]
+									];
+
+									$link = null;
 								}
-
-								$link = null;
-							}
-							catch(\PDOException $ex){
-								print($ex->getMessage());
-							}	
-							?>
-							<div id="purchasedItem" style="height: 300px; width: 100%;"></div>													
+								catch(\PDOException $ex){
+									print($ex->getMessage());
+								}	
+								?>
+								<div id="customerStatus" style="height: 300px; width: 100%;"></div>	
+							</div>
 						</div>
-
 						
+						<div class="row gx-5 mb-5 nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+							<div class="card-body col-md-8 align-self-center px-4 rounded">
+								<div class="card-body rounded row bg-info nav nav-pills ">
+									<div class="col-md-9 text-white">
+									<h3>Search through your Database</h3> 
+									<small>Find a needle in a haystack</small>
+									</div>
+									<div class="col-md-3">
+									<a class="nav-link no-hover btn btn-success text-light" id="v-pills-search-tab" data-toggle="pill" href="#v-pills-search" role="tab" aria-controls="v-pills-search" aria-selected="false">Search</a>
+									</div>		
+								</div>
+
+
+								<div class="card-body rounnded row bg-info my-5">
+									<div class="col-md-9 text-white">
+									<h3>Download your earnings report</h3> 
+									<small>There are so many varities of Packages</small>
+									</div>
+									<div class="col-md-3">
+									<a class="nav-link no-hover btn btn-success text-light" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false">Download</a>
+									</div>	
+								</div>
+							</div>
+
+							<div class="col-md-4 vendorStatus rounded">
+								<?php					
+									$vendor_dataPoints = array();
+									//Best practice is to create a separate file for handling connection to database
+									try{
+										// Creating a new connection.
+										// Replace your-hostname, your-db, your-username, your-password according to your database
+										$link = new \PDO(   'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+															'root', //'root',
+															'', //'',
+															array(
+																\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+																\PDO::ATTR_PERSISTENT => false
+															)
+														);
+										
+										
+										$handle = $link->prepare('select * from vendor where Status = "Active" ');
+										$handle->execute();
+										
+											
+										$act = $handle->rowCount();
+
+
+										$handle = $link->prepare('select * from vendor where Status = "Disabled" ');
+										$handle->execute();
+
+										$dis = $handle->rowCount();;
+
+										$vendor_dataPoints = [
+											["y" => intval($act / ($act + $dis) * 100), "label" => "Active"],
+											["y" => intval($dis / ($act + $dis) * 100), "label" => "Disabled"]
+										];
+
+										$link = null;
+									}
+									catch(\PDOException $ex){
+										print($ex->getMessage());
+									}	
+								?>
+								<div id="vendorStatus" style="height: 300px; width: 100%;"></div>	
+							</div>
+						</div>
 
 						<div class="col purchaseData">
 							<?php
 							// Establish a database connection
 							try {
-   								$pdo = new \PDO(
-        						'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4',
-        						'root',
-        						'',
-        						array(
-					            \PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            					\PDO::ATTR_PERSISTENT => false
-        						)
-    							);
+								$pdo = new \PDO(
+								'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4',
+								'root',
+								'',
+								array(
+								\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+								\PDO::ATTR_PERSISTENT => false
+								)
+								);
 
 
 
@@ -147,103 +224,16 @@
 									}
 								}
 							} catch (\PDOException $e) {
-    							// Handle database connection errors here
-   								echo "Database connection failed: " . $e->getMessage();
-    							exit();
+								// Handle database connection errors here
+								echo "Database connection failed: " . $e->getMessage();
+								exit();
 							}
 
 							?>
-							<div id="purchaseData" style="height: 300px; width: 100%;"></div>	
-						</div>
-						</div>
-						<div class="row">
-						<div class="col vendorStatus">
-						<?php					
-							$vendor_dataPoints = array();
-							//Best practice is to create a separate file for handling connection to database
-							try{
-								// Creating a new connection.
-								// Replace your-hostname, your-db, your-username, your-password according to your database
-								$link = new \PDO(   'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
-													'root', //'root',
-													'', //'',
-													array(
-														\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-														\PDO::ATTR_PERSISTENT => false
-													)
-												);
-								
-								
-								$handle = $link->prepare('select * from vendor where Status = "Active" ');
-								$handle->execute();
-								
-									
-								$act = $handle->rowCount();
-
-
-								$handle = $link->prepare('select * from vendor where Status = "Disabled" ');
-								$handle->execute();
-
-								$dis = $handle->rowCount();;
-
-								$vendor_dataPoints = [
-									["y" => intval($act / ($act + $dis) * 100), "label" => "Active"],
-									["y" => intval($dis / ($act + $dis) * 100), "label" => "Disabled"]
-								];
-
-								$link = null;
-							}
-							catch(\PDOException $ex){
-								print($ex->getMessage());
-							}	
-							?>
-							<div id="vendorStatus" style="height: 300px; width: 100%;"></div>	
+							<div id="purchaseData" style="height: 300px; width: 100%"></div>	
 						</div>
 						
-						<div class="col customerStatus">
-							<?php					
-							$customer_dataPoints = array();
-							//Best practice is to create a separate file for handling connection to database
-							try{
-								// Creating a new connection.
-								// Replace your-hostname, your-db, your-username, your-password according to your database
-								$link = new \PDO(   'mysql:host=localhost;dbname=shop_inventory;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
-													'root', //'root',
-													'', //'',
-													array(
-														\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-														\PDO::ATTR_PERSISTENT => false
-													)
-												);
-								
-								
-								$handle = $link->prepare('select * from customer where Status = "Active" ');
-								$handle->execute();
-								
-									
-								$act = $handle->rowCount();
-
-
-								$handle = $link->prepare('select * from customer where Status = "Disabled" ');
-								$handle->execute();
-
-								$dis = $handle->rowCount();;
-
-								$customer_dataPoints = [
-									["y" => intval($act / ($act + $dis) * 100), "label" => "Active"],
-									["y" => intval($dis / ($act + $dis) * 100), "label" => "Disabled"]
-								];
-
-								$link = null;
-							}
-							catch(\PDOException $ex){
-								print($ex->getMessage());
-							}	
-							?>
-							<div id="customerStatus" style="height: 300px; width: 100%;"></div>	
-						</div>
-					
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -1095,39 +1085,25 @@
 <?php
 	require 'inc/footer.php';
 ?>
+
 	<script>
 		window.onload = function () {
-		
-			var purchaseChart = new CanvasJS.Chart("purchasedItem", {
-				animationEnabled: true,
-				exportEnabled: true,
-				theme: "light1", // "light1", "light2", "dark1", "dark2"
-				title:{
-					text: "Column Chart of Purchased Items"
-				},
-				data: [{
-					type: "column", //change type to bar, line, area, pie, etc  
-					dataPoints: <?php echo json_encode($purchase_dataPoints, JSON_NUMERIC_CHECK); ?>
-				}]
-			});
-			purchaseChart.render();
-
 			
-			var availableChart = new CanvasJS.Chart("availableItem", {
-				animationEnabled: true,
-				exportEnabled: true,
-				theme: "light1", // "light1", "light2", "dark1", "dark2"
-				title:{
-					text: "Column Chart of Available Items"
-				},
-				data: [{
-					type: "column", //change type to bar, line, area, pie, etc  
-					dataPoints: <?php echo json_encode($available_dataPoints, JSON_NUMERIC_CHECK); ?>
-				}]
-			});
-			availableChart.render();
+				var availableChart = new CanvasJS.Chart("availableItem", {
+					animationEnabled: true,
+					exportEnabled: true,
+					theme: "light1", // "light1", "light2", "dark1", "dark2"
+					title:{
+						text: "Column Chart of Available Items"
+					},
+					data: [{
+						type: "column", //change type to bar, line, area, pie, etc  
+						dataPoints: <?php echo json_encode($available_dataPoints, JSON_NUMERIC_CHECK); ?>
+					}]
+				});
+				availableChart.render();
 
-			var customerChart = new CanvasJS.Chart("customerStatus", {
+				var customerChart = new CanvasJS.Chart("customerStatus", {
 				theme: "light2", // "light1", "light2", "dark1", "dark2"
 				exportEnabled: true,
 				animationEnabled: true,
@@ -1147,7 +1123,7 @@
 				});
 				customerChart.render();
 
-			var vendorChart = new CanvasJS.Chart("vendorStatus", {
+				var vendorChart = new CanvasJS.Chart("vendorStatus", {
 				theme: "light2", // "light1", "light2", "dark1", "dark2"
 				exportEnabled: true,
 				animationEnabled: true,

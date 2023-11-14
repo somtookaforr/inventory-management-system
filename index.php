@@ -17,8 +17,7 @@
     <!-- Page Content -->
     <div class="container-fluid">
 	  <div class="row">
-				<div class="col-lg-2 d-none d-lg-block d-xl-block d-xxl-block">
-		<div class="col-lg-2">
+		<div class="col-lg-2 d-none d-lg-block d-xl-block d-xxl-block">
 		<h1 class="my-4"></h1>
 			<div class="nav flex-column nav-pills bs-secondary-color" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 				<a class="nav-link active" id="v-pills-index-tab" data-toggle="pill" href="#v-pills-index" role="tab" aria-controls="v-pills-index" aria-selected="true">Index</a>

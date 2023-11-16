@@ -128,7 +128,7 @@
 								</div>
 
 
-								<div class="card-body rounnded row bg-info my-5">
+								<div class="card-body rounnded row bg-info my-5 rounded">
 									<div class="col-md-9 text-white">
 									<h3>Download your earnings report</h3> 
 									<small>There are so many varities of Packages</small>

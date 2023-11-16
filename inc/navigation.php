@@ -4,7 +4,7 @@
     <!-- Your head content here -->
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light fixed-top">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -22,18 +22,11 @@
                         <a class="nav-link" id="v-pills-search-tab" data-toggle="pill" href="#v-pills-search" role="tab" aria-controls="v-pills-search" aria-selected="false">Search</a>
                         <a class="nav-link" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false">Reports</a>
                     </div>
-                </ul>
-
-                <li class="nav-item">
-				<span class="nav-link">Welcome <?php echo $_SESSION['fullName']; ?></span>
-            </li>
-			<li class="nav-item">
-				<span class="nav-link"> | </span>
-            </li>
-			<li class="nav-item">
-				<a class="nav-link" href="model/login/logout.php">Log Out</a>
-            </li>
+                </ul>           
             </div>
+            <span class="nav-link">Welcome <span class="text-warning"><?php echo $_SESSION['fullName']; ?></span></span>
+            <span class="nav-link"> | </span>
+            <a class="nav-link text-light" href="model/login/logout.php">Log Out</a>
         </div>
     </nav>
 
